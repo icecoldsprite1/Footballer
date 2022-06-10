@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Nets/Net.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Ball/Ball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://footballPitch.png" type="Texture" id=4]
+[ext_resource path="res://UserInterface.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemy/Enemy2.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 184 )
@@ -16,6 +19,17 @@ position = Vector2( 0, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 230, 175 )
+
+[node name="Enemy" parent="." instance=ExtResource( 6 )]
+position = Vector2( 402, 175 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 486, 175 )
+script = ExtResource( 7 )
+
+[node name="Enemy3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 577, 179 )
+script = null
 
 [node name="Borders" type="StaticBody2D" parent="."]
 position = Vector2( -43, 9 )
@@ -87,3 +101,14 @@ position = Vector2( 33, 180 )
 
 [node name="Goal2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 608, 180 )
+
+[node name="UserInterface" parent="." instance=ExtResource( 5 )]
+
+[connection signal="goal_scored" from="Goal" to="Enemy" method="_on_Goal_goal_scored"]
+[connection signal="goal_scored" from="Goal" to="Enemy2" method="_on_Goal_goal_scored"]
+[connection signal="goal_scored" from="Goal" to="Enemy3" method="_on_Goal_goal_scored"]
+[connection signal="goal_scored" from="Goal" to="UserInterface" method="_on_Goal_goal_scored"]
+[connection signal="goal_scored" from="Goal2" to="Enemy" method="_on_Goal2_goal_scored"]
+[connection signal="goal_scored" from="Goal2" to="Enemy2" method="_on_Goal2_goal_scored"]
+[connection signal="goal_scored" from="Goal2" to="Enemy3" method="_on_Goal2_goal_scored"]
+[connection signal="goal_scored" from="Goal2" to="UserInterface" method="_on_Goal2_goal_scored"]

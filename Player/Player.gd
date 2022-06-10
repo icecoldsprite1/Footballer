@@ -30,9 +30,10 @@ func _input(event):
 		var type = get_parent().get_children()
 		for ball in type:
 			if ball.get_class() == "RigidBody2D":
-				var collision = move_and_collide(Vector2.ZERO)
-				if collision != null:
-					var body = collision.collider
-					print("collided with: ", body.name)
-					var angle = self.get_angle_to(ball.position)
-					ball.apply_central_impulse(Vector2(cos(angle), sin(angle)) * impulse_strength)
+				var angle = self.get_angle_to(ball.position)
+				ball.apply_central_impulse(Vector2(cos(angle), sin(angle)) * impulse_strength)
+#				var collision = move_and_collide(Vector2.ZERO)
+#				if collision != null:
+#					var body = collision.collider
+#					print("collided with: ", body.name)
+
